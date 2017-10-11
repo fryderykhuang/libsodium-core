@@ -52,6 +52,10 @@ namespace Sodium
     [DllImport("libsodium", CallingConvention = CallingConvention.Cdecl)]
     internal static extern int crypto_generichash_blake2b_salt_personal(byte[] buffer, int bufferLength, byte[] message, long messageLength, byte[] key, int keyLength, byte[] salt, byte[] personal);
 
+    //crypto_kdf_derive_from_key
+    [DllImport("libsodium", CallingConvention = CallingConvention.Cdecl)]
+    internal static extern int crypto_kdf_derive_from_key(IntPtr subkey, UIntPtr subkeyLen, ulong subkeyId, byte[] ctx, byte[] key);
+
     //crypto_onetimeauth
     [DllImport("libsodium", CallingConvention = CallingConvention.Cdecl)]
     internal static extern int crypto_onetimeauth(byte[] buffer, byte[] message, long messageLength, byte[] key);
@@ -236,9 +240,17 @@ namespace Sodium
     [DllImport("libsodium", CallingConvention = CallingConvention.Cdecl)]
     internal static extern int crypto_aead_chacha20poly1305_encrypt(IntPtr cipher, out long cipherLength, byte[] message, long messageLength, byte[] additionalData, long additionalDataLength, byte[] nsec, byte[] nonce, byte[] key);
 
+    //crypto_aead_xchacha20poly1305_ietf_encrypt
+    [DllImport("libsodium", CallingConvention = CallingConvention.Cdecl)]
+    internal static extern int crypto_aead_xchacha20poly1305_ietf_encrypt(IntPtr cipher, out long cipherLength, byte[] message, long messageLength, byte[] additionalData, long additionalDataLength, byte[] nsec, byte[] nonce, byte[] key);
+
     //crypto_aead_chacha20poly1305_decrypt
     [DllImport("libsodium", CallingConvention = CallingConvention.Cdecl)]
     internal static extern int crypto_aead_chacha20poly1305_decrypt(IntPtr message, out long messageLength, byte[] nsec, byte[] cipher, long cipherLength, byte[] additionalData, long additionalDataLength, byte[] nonce, byte[] key);
+
+    //crypto_aead_xchacha20poly1305_ietf_decrypt
+    [DllImport("libsodium", CallingConvention = CallingConvention.Cdecl)]
+    internal static extern int crypto_aead_xchacha20poly1305_ietf_decrypt(IntPtr message, out long messageLength, byte[] nsec, byte[] cipher, long cipherLength, byte[] additionalData, long additionalDataLength, byte[] nonce, byte[] key);
 
     //crypto_aead_aes256gcm_is_available
     [DllImport("libsodium", CallingConvention = CallingConvention.Cdecl)]

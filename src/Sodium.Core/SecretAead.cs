@@ -9,7 +9,7 @@ namespace Sodium
   public static class SecretAead
   {
     private const int KEYBYTES = 32;
-    private const int NPUBBYTES = 8;
+    private const int NPUBBYTES = 24;
     private const int ABYTES = 16;
 
     //TODO: we could implement a method which increments the nonce.
@@ -60,7 +60,7 @@ namespace Sodium
       var bin = Marshal.AllocHGlobal(cipher.Length);
       long cipherLength;
 
-      var ret = SodiumLibrary.crypto_aead_chacha20poly1305_encrypt(bin, out cipherLength, message, message.Length, additionalData, additionalData.Length, null,
+      var ret = SodiumLibrary.crypto_aead_xchacha20poly1305_ietf_encrypt(bin, out cipherLength, message, message.Length, additionalData, additionalData.Length, null,
         nonce, key);
 
       Marshal.Copy(bin, cipher, 0, (int) cipherLength);
@@ -116,7 +116,7 @@ namespace Sodium
       var bin = Marshal.AllocHGlobal(message.Length);
       long messageLength;
 
-      var ret = SodiumLibrary.crypto_aead_chacha20poly1305_decrypt(bin, out messageLength, null, cipher, cipher.Length,
+      var ret = SodiumLibrary.crypto_aead_xchacha20poly1305_ietf_decrypt(bin, out messageLength, null, cipher, cipher.Length,
         additionalData, additionalData.Length, nonce, key);
 
       Marshal.Copy(bin, message, 0, (int)messageLength);

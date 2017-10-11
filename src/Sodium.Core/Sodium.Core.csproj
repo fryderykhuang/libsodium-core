@@ -20,6 +20,7 @@
     <RootNamespace>Sodium</RootNamespace>
     <PackageIconUrl>http://upload.wikimedia.org/wikipedia/commons/thumb/7/78/Salt_shaker_on_white_background.jpg/220px-Salt_shaker_on_white_background.jpg</PackageIconUrl>
     <PreserveCompilationContext>true</PreserveCompilationContext>
+    <Version>1.0.6</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -40,7 +41,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="libsodium" Version="1.0.12-preview-01" />
+    <PackageReference Include="libsodium" Version="1.0.15" />
   </ItemGroup>
 
 </Project>
